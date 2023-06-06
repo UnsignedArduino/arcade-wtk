@@ -5,10 +5,10 @@
         "device": "*"
     },
     "files": [
-        "main.blocks",
         "main.ts",
         "README.md",
-        "assets.json"
+        "assets.json",
+        "wtk.ts"
     ],
     "testFiles": [
         "test.ts"
