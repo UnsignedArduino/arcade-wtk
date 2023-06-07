@@ -4,15 +4,33 @@ namespace SpriteKind {
 }
 
 namespace wtk {
-    export class Widget extends Sprite {
+    class WidgetStyle {
+        public constructor(
+            public foregroundColor: number = 0,
+            public backgroundColor: number = 0,
+            public border: number = 0,
+            public borderColor: number = 0,
+            public padding: number = 0,
+            public paddingColor: number = 0,
+            public margin: number = 0,
+            public marginColor: number = 0
+        ) { }
+    }
+
+    class Widget extends Sprite {
         protected _parent: Widget | null;
         protected _children: Widget[];
 
+        protected _style: WidgetStyle;
+
         public constructor() {
-            super(img`.`);
+            super(img`
+                .
+            `);
             this.setKind(SpriteKind.Widget);
             this._parent = null;
             this._children = [];
+            this._style = new WidgetStyle();
         }
 
         public addChild(w: Widget): boolean {
@@ -53,7 +71,7 @@ namespace wtk {
             return success;
         }
 
-        public getChildren(): Widget[] {
+        public get children(): Widget[] {
             return this._children;
         }
 
@@ -63,5 +81,16 @@ namespace wtk {
                 w.destroy(effect, duration);
             })
         }
+
+        public get style(): WidgetStyle {
+            return this._style;
+        }
+
+        public set style(s: WidgetStyle) {
+            this._style = s;
+            this.rerender();
+        }
+
+        public rerender(): void { }
     }
 }
